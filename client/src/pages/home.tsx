@@ -1,8 +1,9 @@
 import { Title, Button, MessageList } from "../components/content";
-import { useOutletContext } from "react-router";
+import { DataContext } from "../App";
+import { useContext } from "react";
 
 export const Home = () => {
-  const { data } = useOutletContext();
+  const { data } = useContext(DataContext);
 
   if (data) {
     return (

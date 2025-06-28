@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { Wrapper, Container } from "./components/content";
 import { Outlet } from "react-router";
+
+export const DataContext = createContext();
 
 function App() {
   const [data, setData] = useState(null);
@@ -21,11 +23,13 @@ function App() {
 
   return (
     <>
-      <Wrapper>
-        <Container>
-          <Outlet context={{ data }} />
-        </Container>
-      </Wrapper>
+      <DataContext.Provider value={{ data, fetchData }}>
+        <Wrapper>
+          <Container>
+            <Outlet context={{ data }} />
+          </Container>
+        </Wrapper>
+      </DataContext.Provider>
     </>
   );
 }

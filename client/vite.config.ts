@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      "/api": `http://localhost:${process.env.VITE_PORT}`,
+      "/api": `http://localhost:${process.env.PORT}`,
     },
   },
 });

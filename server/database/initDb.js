@@ -9,7 +9,7 @@ const PORT = process.env.DB_PORT;
 
 const message = [
   {
-    message: "Hello",
+    text: "Hello",
     user: "Bob",
   },
 ];

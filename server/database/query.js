@@ -5,6 +5,14 @@ const getMessage = async () => {
   return rows;
 };
 
+const addMessage = async (text, user) => {
+  await pool.query(`INSERT INTO messages (text, "user") VALUES ($1, $2)`, [
+    text,
+    user,
+  ]);
+};
+
 module.exports = {
   getMessage,
+  addMessage,
 };
