@@ -6,6 +6,7 @@ const {
   addMessage,
   getMessageById,
   editMessageById,
+  deleteMessageById,
 } = require("./database/query");
 
 const PORT = process.env.PORT;
@@ -31,6 +32,17 @@ app.get("/api/message/:id", async (req, res) => {
   }
 });
 
+app.delete("/api/message/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteMessageById(id);
+    res.status(200).json({ success: true });
+  } catch {
+    console.log("error");
+    res.status(500).json({ success: false });
+  }
+});
+
 app.post("/api", async (req, res) => {
   try {
     const { input, textarea } = req.body;
@@ -51,11 +63,6 @@ app.post("/api/message/:id", async (req, res) => {
   } catch {
     console.log("error");
   }
-});
-
-app.get("/api", async (req, res) => {
-  try {
-  } catch {}
 });
 
 app.listen(PORT, () => {

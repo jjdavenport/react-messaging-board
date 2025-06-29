@@ -1,6 +1,6 @@
 import { Title, MessageItem, NewMessage } from "../components/content";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { DataContext } from "../App";
 
 export const Message = () => {
@@ -10,6 +10,7 @@ export const Message = () => {
   const [textarea, setTextarea] = useState("");
   const [edit, setEdit] = useState(false);
   const { fetchData } = useContext(DataContext);
+  const navigate = useNavigate();
 
   const fetchMessage = async () => {
     try {
@@ -36,6 +37,12 @@ export const Message = () => {
     await fetchData();
   };
 
+  const onDelete = async () => {
+    await fetch(`/api/message/${id}`, { method: "DELETE" });
+    await fetchData();
+    navigate("/");
+  };
+
   useEffect(() => {
     fetchMessage();
   }, [id, edit]);
@@ -54,6 +61,7 @@ export const Message = () => {
           />
         ) : (
           <MessageItem
+            onDelete={onDelete}
             onEdit={() => setEdit(!edit)}
             message={message.text}
             user={message.user}

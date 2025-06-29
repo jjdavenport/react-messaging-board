@@ -12,11 +12,8 @@ const addMessage = async (text, user) => {
   ]);
 };
 
-const deleteMessage = async (text, user) => {
-  await pool.query(`DELETE FROM messages (text, "user") VALUES ($1, $2)`, [
-    text,
-    user,
-  ]);
+const deleteMessageById = async (id) => {
+  await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
 };
 
 const getMessageById = async (id) => {
@@ -37,7 +34,7 @@ const editMessageById = async (id, text, user) => {
 module.exports = {
   getMessage,
   addMessage,
-  deleteMessage,
+  deleteMessageById,
   getMessageById,
   editMessageById,
 };

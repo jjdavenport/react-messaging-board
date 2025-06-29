@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
-import { Pencil } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 type Prop = {
   children: ReactNode;
@@ -51,7 +51,11 @@ export const NewMessage = ({
 }: NewMessageProps) => {
   return (
     <>
-      <form onSubmit={onSubmit} className="flex flex-col gap-4 p-4 outline">
+      <form
+        onSubmit={onSubmit}
+        action="POST"
+        className="flex flex-col gap-4 p-4 outline"
+      >
         <label htmlFor="input">Name</label>
         <input
           id="input"
@@ -136,19 +140,29 @@ type MessageItemProps = {
   message: string;
   user: string;
   onEdit: () => void;
-  href: string;
+  onDelete: () => void;
 };
 
-export const MessageItem = ({ message, user, onEdit }: MessageItemProps) => {
+export const MessageItem = ({
+  message,
+  user,
+  onEdit,
+  onDelete,
+}: MessageItemProps) => {
   return (
     <>
       <div className="p-1 outline">
         <span>{user}</span>
         <div className="flex justify-between">
           <p>{message}</p>
-          <button onClick={onEdit} className="cursor-pointer">
-            <Pencil />
-          </button>
+          <div className="flex gap-2">
+            <button onClick={onEdit} className="cursor-pointer">
+              <Pencil />
+            </button>
+            <button onClick={onDelete} className="cursor-pointer">
+              <Trash2 />
+            </button>
+          </div>
         </div>
       </div>
     </>
