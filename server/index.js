@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const { getMessage, addMessage } = require("./database/query");
+const { getMessage, addMessage, getMessageById } = require("./database/query");
 
 const PORT = process.env.PORT;
 
@@ -14,6 +14,21 @@ app.get("/api", async (req, res) => {
   } catch {
     console.log("error");
   }
+});
+
+app.get("/api/message/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const message = await getMessageById(id);
+    res.json(message);
+  } catch {
+    console.log("error");
+  }
+});
+
+app.get("/api", async (req, res) => {
+  try {
+  } catch {}
 });
 
 app.post("/api", async (req, res) => {

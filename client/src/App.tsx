@@ -26,7 +26,7 @@ function App() {
       <DataContext.Provider value={{ data, fetchData }}>
         <Wrapper>
           <Container>
-            <Outlet context={{ data }} />
+            <Outlet />
           </Container>
         </Wrapper>
       </DataContext.Provider>

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
+import { Trash2 } from "lucide-react";
 
 type Prop = {
   children: ReactNode;
@@ -18,7 +19,7 @@ export const Wrapper = ({ children }: Prop) => {
 export const Title = () => {
   return (
     <>
-      <h1>MessageBoard</h1>
+      <Link to="/">MessageBoard</Link>
     </>
   );
 };
@@ -87,34 +88,70 @@ type MessageListProp = {
     {
       text: string;
       user: string;
+      id: string;
     },
   ];
+  onClick: () => void;
 };
 
-export const MessageList = ({ data }: MessageListProp) => {
+export const MessageList = ({ data, onClick }: MessageListProp) => {
   return (
     <>
       <ul className="flex flex-col gap-2">
         {data.map((i, index) => (
-          <Message message={i.text} user={i.user} key={index} />
+          <MessageLink
+            href={`/message/${i.id}`}
+            onClick={onClick}
+            message={i.text}
+            user={i.user}
+            key={index}
+          />
         ))}
       </ul>
     </>
   );
 };
 
-type MessageProps = {
+type MessageLinkProps = {
   message: string;
   user: string;
+  href: string;
 };
 
-const Message = ({ message, user }: MessageProps) => {
+const MessageLink = ({ message, user, href }: MessageLinkProps) => {
   return (
     <>
-      <li className="p-1 outline">
-        <p>{message}</p>
-        <span>{user}</span>
+      <li className="outline">
+        <Link to={href}>
+          <div className="p-1">
+            <p>{message}</p>
+            <span>{user}</span>
+          </div>
+        </Link>
       </li>
+    </>
+  );
+};
+
+type MessageItemProps = {
+  message: string;
+  user: string;
+  onClick: () => void;
+  href: string;
+};
+
+export const MessageItem = ({ message, user, onClick }: MessageItemProps) => {
+  return (
+    <>
+      <div className="p-1 outline">
+        <p>{message}</p>
+        <div className="flex justify-between">
+          <span>{user}</span>
+          <button onClick={onClick} className="cursor-pointer">
+            <Trash2 />
+          </button>
+        </div>
+      </div>
     </>
   );
 };
