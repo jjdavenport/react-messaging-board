@@ -4,7 +4,6 @@ import { useContext } from "react";
 
 export const Home = () => {
   const { data } = useContext(DataContext);
-
   if (data) {
     return (
       <>

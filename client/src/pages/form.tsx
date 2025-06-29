@@ -9,7 +9,7 @@ export const Form = () => {
   const navigate = useNavigate();
   const { fetchData } = useContext(DataContext);
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await fetch("/api", {
       method: "POST",

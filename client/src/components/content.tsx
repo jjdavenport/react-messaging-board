@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
-import { Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 type Prop = {
   children: ReactNode;
@@ -88,20 +88,19 @@ type MessageListProp = {
     {
       text: string;
       user: string;
-      id: string;
+      id: number;
     },
   ];
-  onClick: () => void;
 };
 
-export const MessageList = ({ data, onClick }: MessageListProp) => {
+export const MessageList = ({ data }: MessageListProp) => {
+  const sortedData = [...data].sort((a, b) => a.id - b.id);
   return (
     <>
       <ul className="flex flex-col gap-2">
-        {data.map((i, index) => (
+        {sortedData.map((i, index) => (
           <MessageLink
             href={`/message/${i.id}`}
-            onClick={onClick}
             message={i.text}
             user={i.user}
             key={index}
@@ -124,8 +123,8 @@ const MessageLink = ({ message, user, href }: MessageLinkProps) => {
       <li className="outline">
         <Link to={href}>
           <div className="p-1">
-            <p>{message}</p>
             <span>{user}</span>
+            <p>{message}</p>
           </div>
         </Link>
       </li>
@@ -136,19 +135,19 @@ const MessageLink = ({ message, user, href }: MessageLinkProps) => {
 type MessageItemProps = {
   message: string;
   user: string;
-  onClick: () => void;
+  onEdit: () => void;
   href: string;
 };
 
-export const MessageItem = ({ message, user, onClick }: MessageItemProps) => {
+export const MessageItem = ({ message, user, onEdit }: MessageItemProps) => {
   return (
     <>
       <div className="p-1 outline">
-        <p>{message}</p>
+        <span>{user}</span>
         <div className="flex justify-between">
-          <span>{user}</span>
-          <button onClick={onClick} className="cursor-pointer">
-            <Trash2 />
+          <p>{message}</p>
+          <button onClick={onEdit} className="cursor-pointer">
+            <Pencil />
           </button>
         </div>
       </div>

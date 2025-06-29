@@ -1,7 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const { getMessage, addMessage, getMessageById } = require("./database/query");
+const {
+  getMessage,
+  addMessage,
+  getMessageById,
+  editMessageById,
+} = require("./database/query");
 
 const PORT = process.env.PORT;
 
@@ -26,11 +31,6 @@ app.get("/api/message/:id", async (req, res) => {
   }
 });
 
-app.get("/api", async (req, res) => {
-  try {
-  } catch {}
-});
-
 app.post("/api", async (req, res) => {
   try {
     const { input, textarea } = req.body;
@@ -40,6 +40,22 @@ app.post("/api", async (req, res) => {
     console.log("error");
     res.status(500).json({ success: false });
   }
+});
+
+app.post("/api/message/:id", async (req, res) => {
+  const { id } = req.params;
+  const { input, textarea } = req.body;
+  try {
+    const editedMessage = await editMessageById(id, input, textarea);
+    res.json(editedMessage);
+  } catch {
+    console.log("error");
+  }
+});
+
+app.get("/api", async (req, res) => {
+  try {
+  } catch {}
 });
 
 app.listen(PORT, () => {

@@ -26,9 +26,18 @@ const getMessageById = async (id) => {
   return rows[0];
 };
 
+const editMessageById = async (id, text, user) => {
+  const { rows } = await pool.query(
+    `UPDATE messages SET text = $1, "user" = $2 WHERE id = $3 RETURNING *`,
+    [text, user, id]
+  );
+  return rows[0];
+};
+
 module.exports = {
   getMessage,
   addMessage,
   deleteMessage,
   getMessageById,
+  editMessageById,
 };
