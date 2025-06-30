@@ -14,7 +14,9 @@ export const Message = () => {
 
   const fetchMessage = async () => {
     try {
-      const response = await fetch(`/api/message/${id}`);
+      const response = await fetch(
+        `https://react-messaging-board.onrender.com/api/message/${id}`,
+      );
       const result = await response.json();
       setMessage(result);
       setInput(result.user);
@@ -26,11 +28,14 @@ export const Message = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await fetch(`/api/message/${id}`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ input, textarea }),
-    });
+    await fetch(
+      `https://react-messaging-board.onrender.com/api/message/${id}`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ input, textarea }),
+      },
+    );
     setInput("");
     setTextarea("");
     setEdit(false);
@@ -38,7 +43,10 @@ export const Message = () => {
   };
 
   const onDelete = async () => {
-    await fetch(`/api/message/${id}`, { method: "DELETE" });
+    await fetch(
+      `https://react-messaging-board.onrender.com/api/message/${id}`,
+      { method: "DELETE" },
+    );
     await fetchData();
     navigate("/react-messaging-board/");
   };

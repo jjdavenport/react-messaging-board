@@ -19,7 +19,7 @@ export const Form = () => {
     setInput("");
     setTextarea("");
     await fetchData();
-    navigate("/");
+    navigate("/react-messaging-board/");
   };
 
   return (
