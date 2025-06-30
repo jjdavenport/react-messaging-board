@@ -5,11 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch index.js",
-    "db": "node database/initDb.js"
+    "db": "node database/initDb.js",
+    "start": "concurrently \"node database/initDb.js\" \"node index.js\""
   },
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "concurrently": "^9.2.0",
     "dotenv": "^16.6.0",
     "express": "^5.1.0",
     "pg": "^8.16.3"
