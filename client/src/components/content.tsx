@@ -2,9 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router";
 import { Pencil, Trash2 } from "lucide-react";
 
-type Prop = {
-  children: ReactNode;
-};
+type Prop = { children: ReactNode };
 
 export const Wrapper = ({ children }: Prop) => {
   return (

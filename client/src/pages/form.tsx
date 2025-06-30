@@ -1,13 +1,17 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { NewMessage, Title } from "../components/content";
-import { DataContext } from "../App";
+import { DataContext } from "../hooks/data-provider";
 
 export const Form = () => {
   const [input, setInput] = useState("");
   const [textarea, setTextarea] = useState("");
   const navigate = useNavigate();
-  const { fetchData } = useContext(DataContext);
+  const context = useContext(DataContext);
+  if (!context) {
+    throw new Error("Message must be used within a DataContext.Provider");
+  }
+  const { fetchData } = context;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

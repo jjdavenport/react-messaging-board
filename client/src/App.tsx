@@ -1,8 +1,7 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState } from "react";
 import { Wrapper, Container } from "./components/content";
 import { Outlet } from "react-router";
-
-export const DataContext = createContext();
+import { DataContext } from "./hooks/data-provider";
 
 function App() {
   const [data, setData] = useState(null);

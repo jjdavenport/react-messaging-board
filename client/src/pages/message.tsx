@@ -1,15 +1,20 @@
 import { Title, MessageItem, NewMessage } from "../components/content";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { DataContext } from "../App";
+import { DataContext } from "../hooks/data-provider";
+import type { MessageType } from "../hooks/data-provider";
 
 export const Message = () => {
   const { id } = useParams();
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState<MessageType | undefined>(undefined);
   const [input, setInput] = useState("");
   const [textarea, setTextarea] = useState("");
   const [edit, setEdit] = useState(false);
-  const { fetchData } = useContext(DataContext);
+  const context = useContext(DataContext);
+  if (!context) {
+    throw new Error("Message must be used within a DataContext.Provider");
+  }
+  const { fetchData } = context;
   const navigate = useNavigate();
 
   const fetchMessage = async () => {
