@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      "/api": `http://localhost:${process.env.PORT}`,
+      "/api": `https://react-messaging-board.onrender.com/`,
     },
   },
 });
