@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch index.js",
     "db": "node database/initDb.js",
+    "build": "npm install",
     "start": "concurrently \"node database/initDb.js\" \"node index.js\""
   },
   "license": "ISC",
