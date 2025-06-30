@@ -11,7 +11,7 @@ export const Form = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await fetch("/api", {
+    await fetch("https://react-messaging-board.onrender.com/api", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ input, textarea }),

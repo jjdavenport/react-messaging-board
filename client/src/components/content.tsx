@@ -19,7 +19,7 @@ export const Wrapper = ({ children }: Prop) => {
 export const Title = () => {
   return (
     <>
-      <Link to="/">MessageBoard</Link>
+      <Link to="/react-messaging-board/">MessageBoard</Link>
     </>
   );
 };
@@ -27,7 +27,7 @@ export const Title = () => {
 export const Button = () => {
   return (
     <>
-      <Link className="p-1 text-center outline" to="/new">
+      <Link className="p-1 text-center outline" to="new">
         New message
       </Link>
     </>
@@ -104,7 +104,7 @@ export const MessageList = ({ data }: MessageListProp) => {
       <ul className="flex flex-col gap-2">
         {sortedData.map((i, index) => (
           <MessageLink
-            href={`/message/${i.id}`}
+            href={`message/${i.id}`}
             message={i.text}
             user={i.user}
             key={index}

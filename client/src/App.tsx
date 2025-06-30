@@ -9,7 +9,9 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api");
+      const response = await fetch(
+        "https://react-messaging-board.onrender.com/api",
+      );
       const result = await response.json();
       setData(result);
     } catch {

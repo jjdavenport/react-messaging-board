@@ -40,7 +40,7 @@ export const Message = () => {
   const onDelete = async () => {
     await fetch(`/api/message/${id}`, { method: "DELETE" });
     await fetchData();
-    navigate("/");
+    navigate("/react-messaging-board/");
   };
 
   useEffect(() => {

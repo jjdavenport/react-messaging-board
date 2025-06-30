@@ -7,6 +7,7 @@ dotenv.config();
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: "/react-messaging-board/",
   server: {
     proxy: {
       "/api": `https://react-messaging-board.onrender.com/`,

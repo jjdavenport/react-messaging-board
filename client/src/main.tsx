@@ -7,19 +7,19 @@ import { Home, Form, Message } from "./pages/index";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/react-messaging-board/",
     element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
-        path: "/new",
+        path: "new",
         element: <Form />,
       },
       {
-        path: "/message/:id",
+        path: "message/:id",
         element: <Message />,
       },
     ],
