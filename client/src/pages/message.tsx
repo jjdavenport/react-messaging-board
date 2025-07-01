@@ -29,7 +29,7 @@ export const Message = () => {
     await fetch(`/api/message/${id}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ input, textarea }),
+      body: JSON.stringify({ textarea, input }),
     });
     setInput("");
     setTextarea("");

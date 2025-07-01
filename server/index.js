@@ -45,7 +45,7 @@ app.delete("/api/message/:id", async (req, res) => {
 
 app.post("/api", async (req, res) => {
   try {
-    const { input, textarea } = req.body;
+    const { textarea, input } = req.body;
     await addMessage(textarea, input);
     res.status(200).json({ success: true });
   } catch {
@@ -56,9 +56,9 @@ app.post("/api", async (req, res) => {
 
 app.post("/api/message/:id", async (req, res) => {
   const { id } = req.params;
-  const { input, textarea } = req.body;
+  const { textarea, input } = req.body;
   try {
-    const editedMessage = await editMessageById(id, input, textarea);
+    const editedMessage = await editMessageById(id, textarea, input);
     res.json(editedMessage);
   } catch {
     console.log("error");
