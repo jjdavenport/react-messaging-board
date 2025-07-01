@@ -61,7 +61,7 @@ app.post("/api/message/:id", async (req, res) => {
   const { id } = req.params;
   const { input, textarea } = req.body;
   try {
-    const editedMessage = await editMessageById(id, input, textarea);
+    const editedMessage = await editMessageById(id, textarea, input);
     res.json(editedMessage);
   } catch {
     console.log("error");
